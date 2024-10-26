@@ -3,47 +3,30 @@ import { createRoot } from "react-dom/client";
 
 import App from "./App.jsx";
 
-// 1- Configurando router
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
-import Home from "./routes/Home.jsx";
-import Contact from "./routes/Contact.jsx";
-import ErrorPage from "./routes/ErrorPage.jsx";
-import ContactDetails from "./routes/ContactDetails.jsx";
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Home />
-//   },
-//   {
-//     path: "contact",
-//     element: <Contact />
-//   }
-// ])
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+
+import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login/Login.jsx";
+import Cadastro from "./pages/Cadastro/Cadastro.jsx";
+
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
-    // 3 - Pagina de erro
-    errorElement: <ErrorPage />,
-    children: [
+    path : '/',
+    element : <App />,
+    children : [
       {
         path : "/",
         element : <Home />
       },
       {
-        path : "contact",
-        element : <Contact />
+        path : "login",
+        element : <Login />
       },
-      // 5 - nested routes - identificador unico
       {
-        path: "/contact/:id",
-        element : <ContactDetails />
-      },
-      // 7 - navigate para paginas nao existentes
-      {
-        path : "oldcontact",
-        element: <Navigate to={"/contact"} />
+        path : 'cadastro',
+        element : <Cadastro />
       }
     ]
   }
@@ -51,6 +34,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+  <RouterProvider router={router} />
   </StrictMode>
 );
