@@ -1,33 +1,48 @@
-import React from 'react'
-import "./home.css"
+import React, { useEffect } from "react";
+import "./home.css";
+import { Navigate, useNavigate } from "react-router-dom";
 const Home = () => {
-    return (
-        <div class="dashboard-container">
+
+  const navigate = useNavigate();
+  // Pegando o token do usuario
+  const token = sessionStorage.getItem("token");
+
+  // Validando se existe o token
+  if (!token) {
+    useEffect(() => {
+      navigate("/login");
+    });
+  }
+
+  return (
+    <div className="dashboard-container">
       <header>
         <h1>Controle de Despesas</h1>
 
-        <button id="logout-button" class="logout-button">LogOut</button>
+        <button id="logout-button" className="logout-button">
+          LogOut
+        </button>
       </header>
 
-      <div class="totals-container">
+      <div className="totals-container">
         <div class="total-box" id="saldo-total">
           <h3>Saldo Total</h3>
           <p id="total-dinheiro">R$ 0,00</p>
         </div>
-        <div class="total-box">
+        <div className="total-box">
           <h3>Total de Entradas</h3>
           <p id="total-entradas">R$ 0,00</p>
         </div>
-        <div class="total-box">
+        <div className="total-box">
           <h3>Total de Saídas</h3>
           <p id="total-saidas">R$ 0,00</p>
         </div>
       </div>
 
-      <section class="transaction-form">
+      <section className="transaction-form">
         <h2>Adicionar Transação</h2>
         <form id="transaction-form">
-          <div class="input-group">
+          <div className="input-group">
             <label for="description">Descrição</label>
             <input
               type="text"
@@ -36,11 +51,11 @@ const Home = () => {
               required
             />
           </div>
-          <div class="input-group">
+          <div className="input-group">
             <label for="amount">Valor</label>
             <input type="number" id="valor" placeholder="Ex: 100.00" required />
           </div>
-          <div class="input-group">
+          <div className="input-group">
             <label for="type">Tipo</label>
             <select id="tipo" required>
               <option value="entrada">Entrada</option>
@@ -48,14 +63,14 @@ const Home = () => {
             </select>
           </div>
           <button type="submit">Adicionar</button>
-          <p class="error-message"></p>
+          <p className="error-message"></p>
         </form>
       </section>
 
-      <section class="transactions-list">
+      <section className="transactions-list">
         <h2>Histórico de Transações</h2>
 
-        <div class="filter">
+        <div className="filter">
           <label for="filter-type">Filtrar por:</label>
           <select id="filter-type">
             <option value="todos">Todos</option>
@@ -65,17 +80,17 @@ const Home = () => {
         </div>
 
         <ul id="transaction-history">
-           {/* <li class="transaction entrada">
+          {/* <li className="transaction entrada">
             <span>Salário</span>
             
-              <span class="amount">R$ 2500,00</span>
+              <span className="amount">R$ 2500,00</span>
               <button id="btn-delete">delete</button>
             
           </li>  */}
         </ul>
       </section>
     </div>
-    )
-}
+  );
+};
 
-export default Home
+export default Home;
