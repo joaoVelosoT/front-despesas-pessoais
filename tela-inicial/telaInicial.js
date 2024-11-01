@@ -1,3 +1,10 @@
+
+const token = sessionStorage.getItem("token");
+if(!token){
+  window.location.href = "../login/login.html"
+}
+
+
 const logout = async () => {
   const btnLogOut = document.getElementById("logout-button");
 
