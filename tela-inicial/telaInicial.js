@@ -31,7 +31,7 @@ const saldoTotal = async () => {
   try {
     const saldoTotal = document.getElementById("total-dinheiro");
     const token = sessionStorage.getItem("token");
-    const response = await fetch("http://localhost:3000/transicao/total", {
+    const response = await fetch("https://api-despesas-pessoais.onrender.com/transicao/total", {
       method: "GET",
       headers: { Authorization: `${token}` },
     });
@@ -54,7 +54,7 @@ const totalEntradas = async () => {
     const totalEntradas = document.getElementById("total-entradas");
     const token = sessionStorage.getItem("token");
 
-    const response = await fetch("http://localhost:3000/transicao/entradas", {
+    const response = await fetch("https://api-despesas-pessoais.onrender.com/transicao/entradas", {
       method: "GET",
       headers: { Authorization: `${token}` },
     });
@@ -75,7 +75,7 @@ const totalSaidas = async () => {
     const totalSaidas = document.getElementById("total-saidas");
     const token = sessionStorage.getItem("token");
 
-    const response = await fetch("http://localhost:3000/transicao/saidas", {
+    const response = await fetch("https://api-despesas-pessoais.onrender.com/transicao/saidas", {
       method: "GET",
       headers: { Authorization: `${token}` },
     });
@@ -124,7 +124,7 @@ const transacao = async () => {
 
     try {
       const token = sessionStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/transicao/", {
+      const response = await fetch("https://api-despesas-pessoais.onrender.com/transicao/", {
         method: "POST",
         headers: {
           Authorization: `${token}`,
@@ -166,7 +166,7 @@ const todasTransferencias = async () => {
 
     // Fazendo o fetch de todas as transferencias
     const response = await fetch(
-      "http://localhost:3000/transicao/todastransferencias",
+      "https://api-despesas-pessoais.onrender.com/transicao/todastransferencias",
       {
         method: "GET",
         headers: { Authorization: `${token}` },
@@ -203,7 +203,7 @@ const todasTransferencias = async () => {
           historico.innerHTML = "";
 
           const response = await fetch(
-            "http://localhost:3000/transicao/todasentradas",
+            "https://api-despesas-pessoais.onrender.com/transicao/todasentradas",
             {
               method: "GET",
               headers: { Authorization: `${token}` },
@@ -236,7 +236,7 @@ const todasTransferencias = async () => {
           // console.log("ta na entrada")
 
           const responseSaida = await fetch(
-            "http://localhost:3000/transicao/todassaidas",
+            "https://api-despesas-pessoais.onrender.com/transicao/todassaidas",
             {
               method: "GET",
               headers: { Authorization: `${token}` },
@@ -264,7 +264,7 @@ const todasTransferencias = async () => {
 
           // Fazendo o fetch de todas as transferencias
           const responseTodas = await fetch(
-            "http://localhost:3000/transicao/todastransferencias",
+            "https://api-despesas-pessoais.onrender.com/transicao/todastransferencias",
             {
               method: "GET",
               headers: { Authorization: `${token}` },
@@ -308,7 +308,7 @@ const btnDeleteFunc = async () => {
       const id = delTransacao.parentElement.id
 
       try {
-        const response = await fetch(`http://localhost:3000/transicao/${id}`, {
+        const response = await fetch(`https://api-despesas-pessoais.onrender.com/transicao/${id}`, {
           method : 'DELETE',
           headers: { Authorization: `${token}` }
         })

@@ -30,7 +30,7 @@ form.addEventListener('submit', async (e) => {
 
     try {
         // Aqui vai ser o fetch
-    const response = await fetch('http://localhost:3000/user/', {
+    const response = await fetch('https://api-despesas-pessoais.onrender.com/user/', {
         method : 'POST',
         headers: {"Content-type": "application/json; charset=UTF-8"},
         body : data
@@ -50,7 +50,7 @@ form.addEventListener('submit', async (e) => {
     // }
 
 
-    const responseLogin = await fetch('http://localhost:3000/user/login', {
+    const responseLogin = await fetch('https://api-despesas-pessoais.onrender.com/user/login', {
         method : 'POST',
         headers: {"Content-type": "application/json; charset=UTF-8"},
         body : data
