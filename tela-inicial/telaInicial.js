@@ -63,7 +63,7 @@ const totalEntradas = async () => {
     if(json.msg === "Acesso negado"){
       window.location.href = '../login/login.html'
     }
-    // console.log(json)
+    console.log(json)
     totalEntradas.innerText = `R$${json.totalEntradas}`;
   } catch (error) {
     console.error(error);
@@ -97,10 +97,10 @@ const transacao = async () => {
   const tipo = document.getElementById("tipo");
   const form = document.getElementById("transaction-form");
   const msgError = document.getElementsByClassName("error-message")[0];
-
+  const btnForm = document.getElementsByClassName("btn-form")[0];
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
+    btnForm.disabled = true;
     if (!valor.value || !descricao.value || !tipo.value) {
       msgError.textContent = "Envie todos os dados !";
       msgError.style.display = "block";
@@ -185,7 +185,7 @@ const todasTransferencias = async () => {
 
     // Fazendo o forEach para jogar as transacoes no HTML
     transacoes.forEach((element) => {
-      historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element.id}>
+      historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element._id}>
                       <span>${element.descricao}</span>
                       <span class="amount">R$ ${element.valor}</span>
                       <button id="btn-delete" class="btn-delete">delete</button>
@@ -219,7 +219,7 @@ const todasTransferencias = async () => {
           const transacoes = json.entradas;
 
           transacoes.forEach((element) => {
-            historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element.id}>
+            historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element._id}>
                             <span>${element.descricao}</span>
                             <span class="amount">R$ ${element.valor}</span>
                       <button id="btn-delete" class="btn-delete">delete</button>
@@ -248,7 +248,7 @@ const todasTransferencias = async () => {
           const transacoesSaida = jsonSaida.saidas;
           console.log(transacoesSaida);
           transacoesSaida.forEach((element) => {
-            historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element.id}>
+            historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element._id}>
                             <span>${element.descricao}</span>
                             <span class="amount">R$ ${element.valor}</span>
                       <button id="btn-delete" class="btn-delete">delete</button>
@@ -279,7 +279,7 @@ const todasTransferencias = async () => {
 
           // Fazendo o forEach para jogar as transacoes no HTML
           todasTransferencias.forEach((element) => {
-            historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element.id}>
+            historico.innerHTML += `<li class="transaction ${element.tipo}" id=${element._id}>
                       <span>${element.descricao}</span>
                       <span class="amount">R$ ${element.valor}</span>
                       <button id="btn-delete" class="btn-delete">delete</button>
@@ -305,6 +305,7 @@ const btnDeleteFunc = async () => {
   btnDelete.forEach((delTransacao) => {
     delTransacao.addEventListener('click', async(e) => {
       e.preventDefault();
+      btnDelete.disabled = true;
       const id = delTransacao.parentElement.id
 
       try {
@@ -320,6 +321,7 @@ const btnDeleteFunc = async () => {
         }
 
         console.log(json);
+        alert("Transação deletada com sucesso !")
         window.location.reload();
       } catch (error) {
         console.error(error);

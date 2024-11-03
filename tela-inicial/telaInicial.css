@@ -152,11 +152,11 @@ button:hover {
     justify-content: space-between;
 }
 
-.transaction.entrada .amount {
+.transaction.Entrada .amount {
     color: green;
 }
 
-.transaction.saida .amount {
+.transaction.Saida .amount {
     color: red;
 }
 
